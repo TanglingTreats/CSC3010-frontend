@@ -1,3 +1,7 @@
+:root {
+    --background-theme: #E0DCC7;
+    --shadow-color: #BFBBA4; 
+}
 .App {
   text-align: center;
 }
@@ -14,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #E0DCC7;
+  background-color: var(--background-theme);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,8 +44,30 @@ input[type="search"] {
     -webkit-appearance: none;
 }
 
+input[type="search"]:focus {
+    outline: none;
+}
+
 .input::-webkit-search-decoration {
   -webkit-appearance: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid var(--shadow-color);
+    border-radius: 10px;
+}
+
+.search-bar:hover {
+    box-shadow: 0 0 8px 1px var(--shadow-color);
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 0 8px 1px var(--shadow-color);
+    /*border: 1px solid blue;*/
 }
 
 button {
@@ -65,14 +91,6 @@ button {
 
 .search-button:active {
     background-color: #C9C9C9;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 5px;
-    border-radius: 10px;
 }
 
 @keyframes App-logo-spin {
