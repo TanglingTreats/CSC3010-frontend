@@ -10,7 +10,7 @@ function App() {
         {/*<img src={logo} className="App-logo" alt="logo" />*/}
         <h2>Lib Search</h2>
         <div className="search-bar">
-          <input size={30} type="search" autoFocus></input>
+          <input size={30} type="search" tabIndex={0} autoFocus></input>
           <button className="search-button"><MagnifyingGlass/></button>
         </div>
         <p>
