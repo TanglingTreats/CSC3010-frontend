@@ -1,23 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+import {ReactComponent as MagnifyingGlass }from './assets/magnifying-glass-search-svgrepo-com.svg';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/*<img src={logo} className="App-logo" alt="logo" />*/}
+        <h2>Lib Search</h2>
+        <div className="search-bar">
+          <input size={30} type="search" autoFocus></input>
+          <button className="search-button"><MagnifyingGlass/></button>
+        </div>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
