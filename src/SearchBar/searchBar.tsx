@@ -6,11 +6,13 @@ import './searchBar.css';
 
 interface SearchBarIntf {
   query?: string;
+  autoFocus?: boolean;
   sendQuery: any;
 }
 
 export function SearchBar(props: SearchBarIntf) {
   const [searchTerm, setSearchTerm] = useState<string>(props.query || "");
+  const [autoFocus, setAutoFocus] = useState<boolean>(props.autoFocus == undefined ? true : props.autoFocus);
 
   const query = props.query || "";
 
@@ -19,7 +21,7 @@ export function SearchBar(props: SearchBarIntf) {
   }
 
   return (<div className="search-bar">
-    <input id="" defaultValue={query} size={30} type="search" onChange={(e)=>{setSearchTerm(e.target.value);}} onKeyUp={(e) => {if(e.key === "Enter") sendQuery();}} tabIndex={0} autoFocus></input>
+    <input id="" defaultValue={query} size={30} type="search" onChange={(e)=>{setSearchTerm(e.target.value);}} onKeyUp={(e) => {if(e.key === "Enter") sendQuery();}} tabIndex={0} autoFocus={autoFocus}></input>
     <button className="search-button" onClick={() => sendQuery()}><MagnifyingGlass/></button>
   </div>);
 
