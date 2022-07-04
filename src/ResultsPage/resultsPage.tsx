@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, createSearchParams, useSearchParams } from "react-router-dom";
 import { SearchBar } from "../SearchBar/searchBar"
+import { ResultItem } from "../ResultItem/resultItem"
 
 import "./resultsPage.css";
 
@@ -14,6 +15,19 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const query = searchParams.get("query") || "";
 
+
+  const items = [
+    {
+      title: `Result 1 based on ${query}`,
+      desc: "Result 1 description",
+      url: "https://www.facebook.com"
+    },
+    {
+      title: `Result 2 relevant to ${query}`,
+      desc: "Result 2 description",
+      url: "https://google.com"
+    }
+  ]
   useEffect(() => {
     
   }, [])
@@ -32,6 +46,9 @@ export function ResultsPage(props: ResultsPageProps) {
         <SearchBar query={query} sendQuery={sendQuery} autoFocus={false} />
       </header>
       <div className="content">
+        {items.map((res) => {
+          return <ResultItem title={res.title} desc={res.desc} url={res.url}/>
+        })}
       </div>
     </div>
   )
