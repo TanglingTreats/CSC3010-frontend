@@ -3,12 +3,15 @@ import {ReactComponent as MagnifyingGlass }from './assets/magnifying-glass-searc
 
 import './App.css';
 
+console.log(process.env.NODE_ENV);
+const app_name = process.env.REACT_APP_NAME;
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
         {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        <h2>Lib Search</h2>
+        <h2>{app_name}</h2>
         <div className="search-bar">
           <input size={30} type="search" tabIndex={0} autoFocus></input>
           <button className="search-button"><MagnifyingGlass/></button>
@@ -16,7 +19,7 @@ function App() {
         <p>
 
         </p>
-      </header>
+      </div>
     </div>
   );
 }
