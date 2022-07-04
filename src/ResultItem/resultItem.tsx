@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./resultItem.css";
+
 interface ResultItemIntf {
   title?: string;
   desc?: string;
@@ -15,7 +17,7 @@ export function ResultItem(props: ResultItemIntf) {
   }
 
   return (
-    <div>
+    <div className="result-item">
       <h3 onClick={() => {openTabTo(props.url)}} style={{cursor: "pointer"}}>{props.title}</h3>
       <p>{props.desc}</p>
     </div>
