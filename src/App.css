@@ -1,6 +1,13 @@
 :root {
     --background-theme: #E0DCC7;
     --shadow-color: #BABBAF;
+
+    /*--button-hover: #E0E0E0;*/
+    /*--button-hover: #EBEBEB;*/
+    /*--button-hover: #37D4C1;*/
+    --button-hover: #37CED4;
+
+    --border-radius: 10px;
 }
 .App {
     background-color: var(--background-theme);
