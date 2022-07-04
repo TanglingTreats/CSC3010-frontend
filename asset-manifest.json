@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/CSC3010-frontend/static/css/main.efa7450b.css",
-    "main.js": "/CSC3010-frontend/static/js/main.71f32a04.js",
+    "main.css": "/CSC3010-frontend/static/css/main.7b85dbf7.css",
+    "main.js": "/CSC3010-frontend/static/js/main.6353c5b2.js",
     "static/js/787.bb5e97dd.chunk.js": "/CSC3010-frontend/static/js/787.bb5e97dd.chunk.js",
     "static/media/magnifying-glass-search-svgrepo-com.svg": "/CSC3010-frontend/static/media/magnifying-glass-search-svgrepo-com.1a3bd7da0162c4e01cfcb5c8408c9dba.svg",
     "index.html": "/CSC3010-frontend/index.html",
-    "main.efa7450b.css.map": "/CSC3010-frontend/static/css/main.efa7450b.css.map",
-    "main.71f32a04.js.map": "/CSC3010-frontend/static/js/main.71f32a04.js.map",
+    "main.7b85dbf7.css.map": "/CSC3010-frontend/static/css/main.7b85dbf7.css.map",
+    "main.6353c5b2.js.map": "/CSC3010-frontend/static/js/main.6353c5b2.js.map",
     "787.bb5e97dd.chunk.js.map": "/CSC3010-frontend/static/js/787.bb5e97dd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.efa7450b.css",
-    "static/js/main.71f32a04.js"
+    "static/css/main.7b85dbf7.css",
+    "static/js/main.6353c5b2.js"
   ]
 }
