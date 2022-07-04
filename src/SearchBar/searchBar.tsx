@@ -2,6 +2,8 @@ import React, {useState} from "react";
 
 import {ReactComponent as MagnifyingGlass }from '../assets/magnifying-glass-search-svgrepo-com.svg';
 
+import './searchBar.css';
+
 interface SearchBarIntf {
   sendQuery: any;
 }
