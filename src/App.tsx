@@ -1,25 +1,19 @@
 import React from 'react';
-import {ReactComponent as MagnifyingGlass }from './assets/magnifying-glass-search-svgrepo-com.svg';
+import { Routes, Route, Link } from "react-router-dom";
 
 import './App.css';
+import {HomePage} from './HomePage/homePage';
+import {ResultsPage} from './ResultsPage/resultsPage';
 
-console.log(process.env.NODE_ENV);
-const app_name = process.env.REACT_APP_NAME;
+const appName = process.env.REACT_APP_NAME || "Default App";
 
 function App() {
   return (
     <div className="App">
-      <div className="App-header">
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        <h2>{app_name}</h2>
-        <div className="search-bar">
-          <input size={30} type="search" tabIndex={0} autoFocus></input>
-          <button className="search-button"><MagnifyingGlass/></button>
-        </div>
-        <p>
-
-        </p>
-      </div>
+      <Routes>
+        <Route path="/" element={<HomePage appName={appName} />}/>
+        <Route path="search" element={<ResultsPage appName={appName}/>}/>
+      </Routes>
     </div>
   );
 }
