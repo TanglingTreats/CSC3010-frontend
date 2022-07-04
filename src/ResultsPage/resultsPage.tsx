@@ -15,7 +15,6 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const query = searchParams.get("query") || "";
 
-
   const items = [
     {
       id: 1,
@@ -30,6 +29,7 @@ export function ResultsPage(props: ResultsPageProps) {
       url: "https://google.com"
     }
   ]
+
   useEffect(() => {
     
   }, [])

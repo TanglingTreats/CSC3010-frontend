@@ -1,6 +1,10 @@
 :root {
     --background-theme: #E0DCC7;
+
     --shadow-color: #BABBAF;
+
+    --hyperlink-color: #022661;
+    --hyperlink-clicked: #3B0261;
 
     /*--button-hover: #E0E0E0;*/
     /*--button-hover: #EBEBEB;*/

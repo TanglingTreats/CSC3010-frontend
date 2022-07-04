@@ -1,3 +1,11 @@
 .result-item {
     margin-bottom: 30px;
 }
+
+.result-item a {
+    color: var(--hyperlink-color);
+}
+
+.result-item a:visited {
+    color: var(--hyperlink-clicked);
+}

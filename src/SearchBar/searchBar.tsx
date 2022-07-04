@@ -21,7 +21,7 @@ export function SearchBar(props: SearchBarIntf) {
   }
 
   return (<div className="search-bar">
-    <input id="" defaultValue={query} size={30} type="search" onChange={(e)=>{setSearchTerm(e.target.value);}} onKeyUp={(e) => {if(e.key === "Enter") sendQuery();}} tabIndex={0} autoFocus={autoFocus}></input>
+    <input id="" key={query} defaultValue={query} size={30} type="search" onChange={(e)=>{setSearchTerm(e.target.value);}} onKeyUp={(e) => {if(e.key === "Enter") sendQuery();}} tabIndex={0} autoFocus={autoFocus}></input>
     <button className="search-button" onClick={() => sendQuery()}><MagnifyingGlass/></button>
   </div>);
 

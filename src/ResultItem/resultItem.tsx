@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import "./resultItem.css";
 
@@ -10,15 +9,10 @@ interface ResultItemIntf {
 }
 
 export function ResultItem(props: ResultItemIntf) {
-  const navigate = useNavigate();
-
-  function openTabTo(url: string) {
-    window.open(url, '_blank');
-  }
 
   return (
     <div className="result-item">
-      <h3 onClick={() => {openTabTo(props.url)}} style={{cursor: "pointer"}}>{props.title}</h3>
+      <a href={props.url} target="_blank" rel="noreferrer"><h3>{props.title}</h3></a>
       <p>{props.desc}</p>
     </div>
   )
