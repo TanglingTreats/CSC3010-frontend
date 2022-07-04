@@ -18,11 +18,13 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const items = [
     {
+      id: 1,
       title: `Result 1 based on ${query}`,
       desc: "Result 1 description",
       url: "https://www.facebook.com"
     },
     {
+      id: 2,
       title: `Result 2 relevant to ${query}`,
       desc: "Result 2 description",
       url: "https://google.com"
@@ -47,7 +49,7 @@ export function ResultsPage(props: ResultsPageProps) {
       </header>
       <div className="content">
         {items.map((res) => {
-          return <ResultItem title={res.title} desc={res.desc} url={res.url}/>
+          return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
         })}
       </div>
     </div>
