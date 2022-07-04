@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/CSC3010-frontend/static/css/main.37da0ff7.css",
-    "main.js": "/CSC3010-frontend/static/js/main.f3d48f0d.js",
+    "main.js": "/CSC3010-frontend/static/js/main.cee2c040.js",
     "static/js/787.bb5e97dd.chunk.js": "/CSC3010-frontend/static/js/787.bb5e97dd.chunk.js",
     "static/media/magnifying-glass-search-svgrepo-com.svg": "/CSC3010-frontend/static/media/magnifying-glass-search-svgrepo-com.1a3bd7da0162c4e01cfcb5c8408c9dba.svg",
     "index.html": "/CSC3010-frontend/index.html",
     "main.37da0ff7.css.map": "/CSC3010-frontend/static/css/main.37da0ff7.css.map",
-    "main.f3d48f0d.js.map": "/CSC3010-frontend/static/js/main.f3d48f0d.js.map",
+    "main.cee2c040.js.map": "/CSC3010-frontend/static/js/main.cee2c040.js.map",
     "787.bb5e97dd.chunk.js.map": "/CSC3010-frontend/static/js/787.bb5e97dd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.37da0ff7.css",
-    "static/js/main.f3d48f0d.js"
+    "static/js/main.cee2c040.js"
   ]
 }
