@@ -12,7 +12,7 @@ export function HomePage(props: HomePageIntf) {
   let [searchParams, setSearchParams] = useSearchParams();
 
   function sendQuery(query: string) {
-    navigate({pathname: 'search' search: createSearchParams({query: query}).toString()})
+    navigate({pathname: 'search', search: createSearchParams({query: query}).toString()})
   }
 
   return (
