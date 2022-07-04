@@ -5,7 +5,6 @@
 .App {
     background-color: var(--background-theme);
     height: 100%;
-    text-align: center;
 }
 
 .App-logo {

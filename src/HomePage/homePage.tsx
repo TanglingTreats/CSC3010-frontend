@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchBar } from "../SearchBar/searchBar"
 
 
@@ -8,10 +8,11 @@ interface HomePageIntf {
 }
 
 export function HomePage(props: HomePageIntf) {
+  const navigate = useNavigate();
   let [searchParams, setSearchParams] = useSearchParams();
 
   function sendQuery(query: string) {
-    console.log(`Sending query: ${query}`);
+    navigate(`/search?query=${query}`)
   }
 
   return (
