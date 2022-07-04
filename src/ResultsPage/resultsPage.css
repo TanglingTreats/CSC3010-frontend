@@ -1,6 +1,21 @@
 .page {
-    background-color: var(--background-theme);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header h2 {
+    margin-right: 30px;
+}
+
 .content {
 
 }
