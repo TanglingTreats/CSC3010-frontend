@@ -45,7 +45,7 @@ export function ResultsPage(props: ResultsPageProps) {
     <div className="page">
       <header className="header">
         <h2 onClick={() => returnToHome()} style={{cursor: "pointer"}}>{props.appName}</h2>
-        <SearchBar query={query} sendQuery={sendQuery} autoFocus={false} />
+        <SearchBar query={query} length="medium" sendQuery={sendQuery} autoFocus={false} />
       </header>
       <div className="content">
         {items.map((res) => {
