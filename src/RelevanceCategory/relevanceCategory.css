@@ -7,3 +7,12 @@
 .relevance-category {
     margin-bottom: 20px;
 }
+
+.check-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.check-item input {
+    margin-right: 5px;
+}

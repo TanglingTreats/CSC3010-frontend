@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, createSearchParams, useSearchParams } from "react-router-dom";
 import { SearchBar } from "../SearchBar/searchBar"
 import { ResultItem } from "../ResultItem/resultItem"
@@ -15,6 +15,9 @@ export function ResultsPage(props: ResultsPageProps) {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get("query") || "";
+  const filterString = searchParams.get("filterBy") || "";
+
+  const [filters, setFilters] = useState<string[]>([]);
 
   const items = [
     {
@@ -45,8 +48,13 @@ export function ResultsPage(props: ResultsPageProps) {
   function returnToHome() {
     navigate(`/`);
   }
-  function sendQuery(query: string) {
-    navigate({pathname: '.', search: createSearchParams({query: query}).toString()})
+  function sendFilters(filters: string[]) {
+    setFilters(filters);
+    sendQuery(query, filters);
+  }
+
+  function sendQuery(query: string, filters: string[]) {
+    navigate({pathname: '.', search: createSearchParams({query: query, ...(filters.length > 0) && {filterBy: filters.join('|')}}).toString()})
   }
 
   return (
@@ -58,7 +66,7 @@ export function ResultsPage(props: ResultsPageProps) {
       <div className="page-body">
         <div className="relevancy-bar">
           {categories.map((category, index) => {
-            return (<RelevanceCategory key={index} header={category.header} items={category.items}/>);
+            return (<RelevanceCategory key={index} header={category.header} items={category.items} sendFilters={sendFilters}/>);
             })}
         </div>
         <div className="content">
