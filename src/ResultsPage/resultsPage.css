@@ -22,12 +22,17 @@
     flex-direction: row;
 }
 
-.relevancy-bar {
+.filter-bar {
     padding: 10px 10px;
+}
+.related-searches {
+    padding: 10px 10px;
+    width: 20%;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     padding: 10px 2%;
+    width: 70%;
 }

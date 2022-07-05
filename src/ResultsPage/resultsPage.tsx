@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, createSearchParams, useSearchParams } from "react-router-dom";
-import { SearchBar } from "../SearchBar/searchBar"
-import { ResultItem } from "../ResultItem/resultItem"
+import { SearchBar } from "../SearchBar/searchBar";
+import { ResultItem } from "../ResultItem/resultItem";
 
 import "./resultsPage.css";
-import { RelevanceCategory } from "../RelevanceCategory/relevanceCategory";
+import { FilterBar } from "../FilterBar/filterBar";
 
 interface ResultsPageProps {
   appName: string
@@ -64,15 +64,17 @@ export function ResultsPage(props: ResultsPageProps) {
         <SearchBar query={query} length="medium" sendQuery={sendQuery} autoFocus={false} />
       </header>
       <div className="page-body">
-        <div className="relevancy-bar">
+        <div className="filter-bar">
           {categories.map((category, index) => {
-            return (<RelevanceCategory key={index} header={category.header} items={category.items} sendFilters={sendFilters}/>);
+            return (<FilterBar key={index} header={category.header} items={category.items} sendFilters={sendFilters}/>);
             })}
         </div>
         <div className="content">
           {items.map((res) => {
             return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
           })}
+        </div>
+        <div className="related-searches">
         </div>
       </div>
     </div>

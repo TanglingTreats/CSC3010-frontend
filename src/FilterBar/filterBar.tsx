@@ -1,13 +1,13 @@
 import React, { useEffect, useReducer } from "react";
 
-import './relevanceCategory.css';
+import './filterBar.css';
 
-interface RelevanceCategoryIntf {
+interface FilterBarIntf {
   header: string;
   items: string[];
   sendFilters: any;
 }
-export function RelevanceCategory(props: RelevanceCategoryIntf) {
+export function FilterBar(props: FilterBarIntf) {
   const defaultCheckboxes = props.items.reduce((o, key) => ({...o, [key]: false }), {});
 
 
