@@ -2,8 +2,20 @@
     margin-bottom: 30px;
 }
 
+.result-item b {
+    font-size: large;
+}
+
+.result-item p {
+    margin-top: 5px;
+}
+
 .result-item a {
     color: var(--hyperlink-color);
+}
+
+.result-item a:hover {
+    border-bottom: 1px solid var(--hyperlink-color);
 }
 
 .result-item a:visited {

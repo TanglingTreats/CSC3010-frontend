@@ -12,7 +12,7 @@ export function ResultItem(props: ResultItemIntf) {
 
   return (
     <div className="result-item">
-      <a href={props.url} target="_blank" rel="noreferrer"><h3>{props.title}</h3></a>
+      <a href={props.url} target="_blank" rel="noreferrer"><b>{props.title}</b></a>
       <p>{props.desc}</p>
     </div>
   )
