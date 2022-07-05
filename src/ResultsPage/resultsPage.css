@@ -24,12 +24,24 @@
 
 .filter-bar {
     padding: 10px 10px;
-    width: 15%;
+    width: 100%;
+    max-width: 8%;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     padding: 10px 2%;
-    width: 65%;
+    width: 100%;
+    max-width: 65%;
+}
+
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 941px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    .filter-bar {
+        width: 100%;
+        max-width: 16%;
+    }
 }
