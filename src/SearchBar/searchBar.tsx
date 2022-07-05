@@ -13,7 +13,7 @@ interface SearchBarIntf {
 
 export function SearchBar(props: SearchBarIntf) {
   const [searchTerm, setSearchTerm] = useState<string>(props.query || "");
-  const [autoFocus, setAutoFocus] = useState<boolean>(props.autoFocus == undefined ? true : props.autoFocus);
+  const [autoFocus, setAutoFocus] = useState<boolean>(props.autoFocus === undefined ? true : props.autoFocus);
 
   const query = props.query || "";
 

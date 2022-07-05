@@ -4,6 +4,7 @@ import { SearchBar } from "../SearchBar/searchBar"
 import { ResultItem } from "../ResultItem/resultItem"
 
 import "./resultsPage.css";
+import { RelevanceCategory } from "../RelevanceCategory/relevanceCategory";
 
 interface ResultsPageProps {
   appName: string
@@ -20,13 +21,20 @@ export function ResultsPage(props: ResultsPageProps) {
       id: 1,
       title: `Result 1 based on ${query}`,
       desc: "Result 1 description",
-      url: "https://www.facebook.com"
+      url: "https://openlibrary.org/works/OL2010879W/Rich_Dad_Poor_Dad?edition=ia:richdadpoordadwh00kiyo_0"
     },
     {
       id: 2,
       title: `Result 2 relevant to ${query}`,
       desc: "Result 2 description",
-      url: "https://google.com"
+      url: "https://openlibrary.org/works/OL823107W/The_intelligent_investor"
+    }
+  ]
+
+  const categories = [
+    {
+      header: "Genre",
+      items: ["Finance", "Math"]
     }
   ]
 
@@ -47,10 +55,17 @@ export function ResultsPage(props: ResultsPageProps) {
         <h2 onClick={() => returnToHome()} style={{cursor: "pointer"}}>{props.appName}</h2>
         <SearchBar query={query} length="medium" sendQuery={sendQuery} autoFocus={false} />
       </header>
-      <div className="content">
-        {items.map((res) => {
-          return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
-        })}
+      <div className="page-body">
+        <div className="relevancy-bar">
+          {categories.map((category, index) => {
+            return (<RelevanceCategory key={index} header={category.header} items={category.items}/>);
+            })}
+        </div>
+        <div className="content">
+          {items.map((res) => {
+            return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
+          })}
+        </div>
       </div>
     </div>
   )

@@ -1,0 +1,9 @@
+.relevance-header {
+    text-transform: capitalize;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.relevance-category {
+    margin-bottom: 20px;
+}
