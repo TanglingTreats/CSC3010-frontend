@@ -3,11 +3,11 @@
 }
 
 .result-item b {
-    font-size: large;
+    font-size: larger;
 }
 
 .result-item p {
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 .result-item a {

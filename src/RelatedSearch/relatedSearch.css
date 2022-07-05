@@ -1,0 +1,32 @@
+h4 {
+    margin: 0;
+}
+
+.related-searches-box h4 {
+    margin-bottom: 10px;
+}
+
+.related-searches-box p {
+    padding: 4px;
+}
+
+.related-searches-box {
+    padding: 10px 10px;
+    width: 23%;
+}
+
+.related-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+
+    border-radius: var(--border-radius);
+    background-color: var(--background-secondary-theme);
+}
+
+.related-search:hover {
+    background-color: var(--background-tertiary-theme);
+    cursor: pointer;
+}

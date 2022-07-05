@@ -27,7 +27,14 @@ input[type="search"]:focus {
     background-color: white;
     border: 1px solid var(--shadow-color);
     border-radius: var(--border-radius);
+}
+
+.small {
     width: 20em;
+}
+
+.medium {
+    width: 35em;
 }
 
 .search-bar:hover {
