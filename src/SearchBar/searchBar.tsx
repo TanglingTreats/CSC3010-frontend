@@ -20,7 +20,9 @@ export function SearchBar(props: SearchBarIntf) {
   const length = props.length || "small";
 
   function sendQuery() {
-    props.sendQuery(searchTerm);
+    if(searchTerm.length !== 0) {
+      props.sendQuery(searchTerm);
+    }
   }
 
   return (<div className={`search-bar ${length}`}>

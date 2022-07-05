@@ -5,6 +5,7 @@ import { ResultItem } from "../ResultItem/resultItem";
 
 import "./resultsPage.css";
 import { FilterBar } from "../FilterBar/filterBar";
+import {RelatedSearch} from "../RelatedSearch/relatedSearch";
 
 interface ResultsPageProps {
   appName: string
@@ -42,18 +43,17 @@ export function ResultsPage(props: ResultsPageProps) {
   ]
 
   useEffect(() => {
-    
-  }, [])
+    sendQuery(query);
+  }, [filters])
 
   function returnToHome() {
     navigate(`/`);
   }
   function sendFilters(filters: string[]) {
     setFilters(filters);
-    sendQuery(query, filters);
   }
 
-  function sendQuery(query: string, filters: string[]) {
+  function sendQuery(query: string) {
     navigate({pathname: '.', search: createSearchParams({query: query, ...(filters.length > 0) && {filterBy: filters.join('|')}}).toString()})
   }
 
@@ -74,8 +74,7 @@ export function ResultsPage(props: ResultsPageProps) {
             return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
           })}
         </div>
-        <div className="related-searches">
-        </div>
+        <RelatedSearch />
       </div>
     </div>
   )
