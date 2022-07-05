@@ -12,7 +12,8 @@ h4 {
 
 .related-searches-box {
     padding: 10px 10px;
-    width: 23%;
+    width: 100%;
+    max-width: 14%;
 }
 
 .related-search {
@@ -29,4 +30,14 @@ h4 {
 .related-search:hover {
     background-color: var(--background-tertiary-theme);
     cursor: pointer;
+}
+
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 941px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    .related-searches-box {
+        width: 100%;
+        max-width: 24%;
+    }
 }
