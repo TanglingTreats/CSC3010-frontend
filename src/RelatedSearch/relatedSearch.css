@@ -7,19 +7,19 @@ h4 {
 }
 
 .related-searches-box p {
+    margin-left: 5px;
     padding: 4px;
 }
 
 .related-searches-box {
     padding: 10px 10px;
     width: 100%;
-    max-width: 14%;
+    max-width: 20%;
 }
 
 .related-search {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     padding: 5px 10px;
     margin-bottom: 10px;
 
