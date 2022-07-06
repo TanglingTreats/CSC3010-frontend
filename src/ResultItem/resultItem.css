@@ -1,5 +1,8 @@
 .result-item {
     margin-bottom: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .result-item b {

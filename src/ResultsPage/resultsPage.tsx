@@ -6,6 +6,7 @@ import { ResultItem } from "../ResultItem/resultItem";
 import "./resultsPage.css";
 import { FilterBar } from "../FilterBar/filterBar";
 import {RelatedSearch} from "../RelatedSearch/relatedSearch";
+import {RelatedSearchItem} from "../RelatedSearch/relatedSearchItem";
 
 interface ResultsPageProps {
   appName: string
@@ -42,6 +43,13 @@ export function ResultsPage(props: ResultsPageProps) {
     }
   ]
 
+  const relatedSearch = [
+    "Rich Dad, Poor Dad",
+    "The Intelligent Investor",
+    "Think and Grow Rich",
+    "The Richest Man in Babylon",
+  ]
+
   useEffect(() => {
     sendQuery(query);
   }, [filters])
@@ -74,7 +82,11 @@ export function ResultsPage(props: ResultsPageProps) {
             return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
           })}
         </div>
-        <RelatedSearch />
+        <RelatedSearch>
+          {relatedSearch.map((res, index) => {
+            return <RelatedSearchItem key={index} title={res} sendQuery={sendQuery} />
+          })}
+        </RelatedSearch>
       </div>
     </div>
   )
