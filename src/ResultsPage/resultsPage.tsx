@@ -85,7 +85,7 @@ export function ResultsPage(props: ResultsPageProps) {
             return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
           })}
         </div>
-        <RelatedSearch>
+        <RelatedSearch style={{"visibility": "hidden"}}>
           {relatedSearch.map((res, index) => {
             return <RelatedSearchItem key={index} title={res} sendQuery={sendQuery} />
           })}
