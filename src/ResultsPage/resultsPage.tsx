@@ -13,6 +13,9 @@ interface ResultsPageProps {
 }
 
 export function ResultsPage(props: ResultsPageProps) {
+
+  const filterBarVisibility = "hidden";
+
   const navigate = useNavigate();
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -38,7 +41,7 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const categories = [
     {
-      header: "Genre",
+      header: "Subject",
       items: ["Finance", "Math"]
     }
   ]
@@ -72,7 +75,7 @@ export function ResultsPage(props: ResultsPageProps) {
         <SearchBar query={query} length="medium" sendQuery={sendQuery} autoFocus={false} />
       </header>
       <div className="page-body">
-        <div className="filter-bar">
+        <div className="filter-bar" style={{"visibility": filterBarVisibility}}>
           {categories.map((category, index) => {
             return (<FilterBar key={index} header={category.header} items={category.items} sendFilters={sendFilters}/>);
             })}
