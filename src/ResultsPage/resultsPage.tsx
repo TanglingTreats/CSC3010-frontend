@@ -106,10 +106,13 @@ export function ResultsPage(props: ResultsPageProps) {
         </div>
         <div className="content">
           <>
-            {queryResults.map((res: any, index: number) => {
-              if(index >= page * resultsPerPage && index < (page * resultsPerPage) + resultsPerPage)
-              return <ResultItem key={res.bookID} title={res.title} desc={res.description} url={res.url}/>
-            })}
+            {queryResults.length > 0 ? (queryResults.map((res: any, index: number) => {
+              if(index >= page * resultsPerPage && index < (page * resultsPerPage) + resultsPerPage) {
+                return <ResultItem key={res.bookID} title={res.title} desc={res.description} url={res.url} author={res.author}/>
+              } else {
+                return false;
+              }
+            })) : <p>No results were found</p>}
           </>
         </div>
         <RelatedSearch style={{"visibility": "hidden"}}>

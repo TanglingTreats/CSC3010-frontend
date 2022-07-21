@@ -15,10 +15,24 @@ interface ResultItemIntf {
 
 export function ResultItem(props: ResultItemIntf) {
 
+  const defaultItem = {
+    title: "No title was provided",
+    url: "https://google.com",
+    desc: "No description was provided"
+  }
+
+  console.log(props);
+  const item = {
+    ...defaultItem,
+    ...props,
+    desc: props.desc === " " || props.desc!.length === 0 ? defaultItem.desc : props.desc
+  }
+
   return (
     <div className="result-item">
-      <a href={props.url} target="_blank" rel="noreferrer"><b>{props.title}</b></a>
-      <p>{props.desc}</p>
+      <a href={item.url} target="_blank" rel="noreferrer"><b>{item.title}</b></a>
+      <p>{item.desc}</p>
+      <p>By: {item.author}</p>
     </div>
   )
 }
