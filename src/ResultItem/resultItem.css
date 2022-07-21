@@ -5,12 +5,17 @@
     text-overflow: ellipsis;
 }
 
+.result-item:last-child {
+    margin-bottom: 0;
+}
+
 .result-item b {
     font-size: larger;
 }
 
 .result-item p {
     margin-top: 8px;
+    text-overflow: ellipsis;
 }
 
 .result-item a {
