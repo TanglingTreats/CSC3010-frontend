@@ -5,6 +5,11 @@ import "./resultItem.css";
 interface ResultItemIntf {
   title?: string;
   desc?: string;
+  author?: string;
+  bookID?: string;
+  language?: string;
+  publisher?: string;
+  publishDate?: string;
   url: string;
 }
 

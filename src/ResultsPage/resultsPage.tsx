@@ -8,12 +8,15 @@ import { FilterBar } from "../FilterBar/filterBar";
 import {RelatedSearch} from "../RelatedSearch/relatedSearch";
 import {RelatedSearchItem} from "../RelatedSearch/relatedSearchItem";
 import {makeQuery} from "../common/apiCall";
+import {Pagination} from "./pagination";
 
 interface ResultsPageProps {
   appName: string
 }
 
 export function ResultsPage(props: ResultsPageProps) {
+
+  const resultsPerPage = 10;
 
   const filterBarVisibility = "hidden";
 
@@ -25,17 +28,23 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const [filters, setFilters] = useState<string[]>([]);
 
-  const items = [
+  const [queryResults, setQueryResults] = useState<any>([]);
+  const [facets, setFacets] = useState<Object>({});
+
+  const [numberOfPages, setNumOfPages] = useState<number>(0);
+  const [page, setPage] = useState<number>(0);
+
+  let items = [
     {
-      id: 1,
+      bookID: 1,
       title: `Result 1 based on ${query}`,
-      desc: "Result 1 description",
+      description: "Result 1 description",
       url: "https://openlibrary.org/works/OL2010879W/Rich_Dad_Poor_Dad?edition=ia:richdadpoordadwh00kiyo_0"
     },
     {
-      id: 2,
+      bookID: 2,
       title: `Result 2 relevant to ${query}`,
-      desc: "Result 2 description",
+      description: "Result 2 description",
       url: "https://openlibrary.org/works/OL823107W/The_intelligent_investor"
     }
   ]
@@ -57,7 +66,10 @@ export function ResultsPage(props: ResultsPageProps) {
   useEffect(() => {
     makeQuery(query).then((res) => {
       if(!res.error) {
-        console.log(res);
+        setQueryResults(res.slice(0, -1));
+        setFacets(res[res.length - 1]);
+
+        setNumOfPages(Math.ceil(res.length / resultsPerPage));
       } else {
         console.log(res.error);
       }
@@ -93,9 +105,12 @@ export function ResultsPage(props: ResultsPageProps) {
             })}
         </div>
         <div className="content">
-          {items.map((res) => {
-            return <ResultItem key={res.id} title={res.title} desc={res.desc} url={res.url}/>
-          })}
+          <>
+            {queryResults.map((res: any, index: number) => {
+              if(index >= page * resultsPerPage && index < (page * resultsPerPage) + resultsPerPage)
+              return <ResultItem key={res.bookID} title={res.title} desc={res.description} url={res.url}/>
+            })}
+          </>
         </div>
         <RelatedSearch style={{"visibility": "hidden"}}>
           {relatedSearch.map((res, index) => {
@@ -103,6 +118,7 @@ export function ResultsPage(props: ResultsPageProps) {
           })}
         </RelatedSearch>
       </div>
+      <Pagination page={page} numOfPages={numberOfPages} setPage={setPage}/>
     </div>
   )
 }
