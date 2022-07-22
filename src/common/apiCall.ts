@@ -51,3 +51,17 @@ export async function makeQuery(query: string) {
   return await handleAPIResponse(api);
 }
 
+export async function makeFacetedQuery(query: string, facet: string, facetValue: string) {
+  let api = {
+    method: "get",
+    endpoint: "/facet",
+    params: {
+      query: query,
+      facet: facet,
+      facetValue: facetValue
+    }
+  }
+
+  return await handleAPIResponse(api);
+}
+
