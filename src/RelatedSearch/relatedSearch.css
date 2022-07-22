@@ -26,11 +26,20 @@ h4 {
 
     border-radius: var(--border-radius);
     background-color: var(--background-secondary-theme);
+
 }
 
-.related-search:hover {
-    background-color: var(--background-tertiary-theme);
+.select {
     cursor: pointer;
+}
+
+.select:hover {
+    background-color: var(--background-tertiary-theme);
+}
+
+.selected {
+    color: var(--selected-text-color);
+    background-color: var(--selected-link-color);
 }
 
 @media only screen
