@@ -7,6 +7,7 @@ interface RelatedSearchIntf {
   title: string;
   facets: string[];
   sendQuery: any;
+  selectedFacet: string;
 }
 
 export function RelatedSearch(props: RelatedSearchIntf) {
@@ -14,7 +15,7 @@ export function RelatedSearch(props: RelatedSearchIntf) {
     <div>
       <h4>{props.title}</h4>
       {props.facets.map((facet: string, index: number) => {
-        return <RelatedSearchItem key={facet} category={props.title} title={facet} sendQuery={props.sendQuery} />
+        return <RelatedSearchItem key={facet} category={props.title} title={facet} sendQuery={props.sendQuery} selectedFacet={props.selectedFacet}/>
       })}
     </div>
   )

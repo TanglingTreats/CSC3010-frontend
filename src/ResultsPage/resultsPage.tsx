@@ -137,7 +137,7 @@ export function ResultsPage(props: ResultsPageProps) {
         </div>
         <div className="related-searches-box">
           {Object.keys(facets).map((key: string, index) => {
-            return <RelatedSearch key={index} title={key} facets={facets[key]} sendQuery={sendFacetQuery}/>
+            return <RelatedSearch key={index} title={key} facets={facets[key]} selectedFacet={facetValue} sendQuery={sendFacetQuery}/>
           })}
         </div>
       </div>
