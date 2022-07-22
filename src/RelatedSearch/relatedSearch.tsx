@@ -1,17 +1,21 @@
 import React from "react";
 
 import "./relatedSearch.css";
+import {RelatedSearchItem} from "./relatedSearchItem";
 
 interface RelatedSearchIntf {
-  style?: React.CSSProperties;
-  children?: JSX.Element | JSX.Element[];
+  title: string;
+  facets: string[];
+  sendQuery: any;
 }
 
 export function RelatedSearch(props: RelatedSearchIntf) {
   return (
-    <div className="related-searches-box" style={props.style}>
-      <h4>Related Searches</h4>
-      {props.children}
+    <div>
+      <h4>{props.title}</h4>
+      {props.facets.map((facet: string, index: number) => {
+        return <RelatedSearchItem key={facet} category={props.title} title={facet} sendQuery={props.sendQuery} />
+      })}
     </div>
   )
 }

@@ -6,8 +6,7 @@ import { ResultItem } from "../ResultItem/resultItem";
 import "./resultsPage.css";
 import { FilterBar } from "../FilterBar/filterBar";
 import {RelatedSearch} from "../RelatedSearch/relatedSearch";
-import {RelatedSearchItem} from "../RelatedSearch/relatedSearchItem";
-import {makeQuery} from "../common/apiCall";
+import {makeFacetedQuery, makeQuery} from "../common/apiCall";
 import {Pagination} from "./pagination";
 
 interface ResultsPageProps {
@@ -25,11 +24,13 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const query = searchParams.get("query") || "";
   const filterString = searchParams.get("filterBy") || "";
+  const facet = searchParams.get("facet") || "";
+  const facetValue = searchParams.get("facetValue") || "";
 
   const [filters, setFilters] = useState<string[]>([]);
 
   const [queryResults, setQueryResults] = useState<any>([]);
-  const [facets, setFacets] = useState<Object>({});
+  const [facets, setFacets] = useState<any>({});
 
   const [numberOfPages, setNumOfPages] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
@@ -64,17 +65,24 @@ export function ResultsPage(props: ResultsPageProps) {
   ]
 
   useEffect(() => {
-    makeQuery(query).then((res) => {
-      if(!res.error) {
-        setQueryResults(res.slice(0, -1));
-        setFacets(res[res.length - 1]);
-
-        setNumOfPages(Math.ceil(res.length / resultsPerPage));
-      } else {
-        console.log(res.error);
-      }
-    });
-  }, [query]);
+    if(facet === "") {
+      makeQuery(query).then((res) => {
+        if(!res.error) {
+          processQueryResults(res);
+        } else {
+          console.log(res.error);
+        }
+      });
+    } else {
+      makeFacetedQuery(query, facet, facetValue).then((res) => {
+        if(!res.error) {
+          processQueryResults(res);
+        } else {
+          console.log(res.error);
+        }
+      })
+    }
+  }, [query, facet]);
 
   useEffect(() => {
     sendQuery(query);
@@ -84,12 +92,24 @@ export function ResultsPage(props: ResultsPageProps) {
     navigate(`/`);
   }
 
+  function processQueryResults(res: any) {
+    setQueryResults(res.slice(0, -1));
+    setFacets(res[res.length - 1]);
+
+    let pages = Math.ceil((res.length - 1) / resultsPerPage);
+    setNumOfPages(pages);
+  }
+
   function sendFilters(filters: string[]) {
     setFilters(filters);
   }
 
   function sendQuery(query: string) {
     navigate({pathname: '.', search: createSearchParams({query: query, ...(filters.length > 0) && {filterBy: filters.join('|')}}).toString()})
+  }
+
+  function sendFacetQuery(facet: string, facetValue: string) {
+    navigate({pathname: '.', search: createSearchParams({query: query, ...(filters.length > 0) && {filterBy: filters.join('|')}, ...(facet !== "") && {facet: facet}, ...(facetValue !== "") && {facetValue: facetValue}}).toString()})
   }
 
   return (
@@ -115,11 +135,11 @@ export function ResultsPage(props: ResultsPageProps) {
             })) : <p>No results were found</p>}
           </>
         </div>
-        <RelatedSearch style={{"visibility": "hidden"}}>
-          {relatedSearch.map((res, index) => {
-            return <RelatedSearchItem key={index} title={res} sendQuery={sendQuery} />
+        <div className="related-searches-box">
+          {Object.keys(facets).map((key: string, index) => {
+            return <RelatedSearch key={index} title={key} facets={facets[key]} sendQuery={sendFacetQuery}/>
           })}
-        </RelatedSearch>
+        </div>
       </div>
       <Pagination page={page} numOfPages={numberOfPages} setPage={setPage}/>
     </div>
