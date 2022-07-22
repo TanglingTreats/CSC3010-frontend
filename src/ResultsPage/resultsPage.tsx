@@ -69,7 +69,8 @@ export function ResultsPage(props: ResultsPageProps) {
         setQueryResults(res.slice(0, -1));
         setFacets(res[res.length - 1]);
 
-        setNumOfPages(Math.ceil(res.length / resultsPerPage));
+        let pages = Math.ceil((res.length - 1) / resultsPerPage);
+        setNumOfPages(pages);
       } else {
         console.log(res.error);
       }

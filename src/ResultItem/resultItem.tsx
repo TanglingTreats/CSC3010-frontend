@@ -21,7 +21,6 @@ export function ResultItem(props: ResultItemIntf) {
     desc: "No description was provided"
   }
 
-  console.log(props);
   const item = {
     ...defaultItem,
     ...props,

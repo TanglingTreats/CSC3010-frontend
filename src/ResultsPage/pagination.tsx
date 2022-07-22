@@ -13,7 +13,7 @@ export function Pagination(props: PaginationIntf) {
     <div className="pagination">
       {
         range.map((num: number, index:number) => {
-          return <p key={num} className="page-numbers" onClick={() => {props.setPage(num);}}>{num + 1}</p>
+          return <p key={num} className={`page-numbers ${props.page === num ? "current-page" : ""}`} onClick={() => {props.setPage(num);}}>{num + 1}</p>
         })
       }
     </div>
