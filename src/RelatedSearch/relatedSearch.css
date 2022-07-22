@@ -47,7 +47,14 @@ and (min-device-width: 320px)
 and (max-device-width: 941px)
 and (-webkit-min-device-pixel-ratio: 2) {
     .related-searches-box {
+        position: absolute;
+        top: 15%;
+        left: 5%;
         width: 100%;
-        max-width: 24%;
+        max-width: 85%;
+        height: 80%;
+        overflow-y: scroll;
+
+        background-color: var(--background-theme);
     }
 }
