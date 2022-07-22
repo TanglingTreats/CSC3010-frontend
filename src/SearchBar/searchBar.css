@@ -63,7 +63,6 @@ input[type="search"]:focus {
     align-content: center;
 }
 
-
 .search-button:hover {
     background-color: var(--button-hover);
 }

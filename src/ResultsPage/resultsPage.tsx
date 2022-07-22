@@ -8,12 +8,16 @@ import { FilterBar } from "../FilterBar/filterBar";
 import {RelatedSearch} from "../RelatedSearch/relatedSearch";
 import {makeFacetedQuery, makeQuery} from "../common/apiCall";
 import {Pagination} from "./pagination";
+import {useWindowSize} from "../common/useWindowSize";
 
 interface ResultsPageProps {
   appName: string
 }
 
 export function ResultsPage(props: ResultsPageProps) {
+  const [width, height] = useWindowSize();
+
+  const [isMobile, setIsMobile] = useState<boolean>();
 
   const resultsPerPage = 10;
 
@@ -34,6 +38,8 @@ export function ResultsPage(props: ResultsPageProps) {
 
   const [numberOfPages, setNumOfPages] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
+
+  const [showFilter, setShowFilter] = useState<boolean>();
 
   let items = [
     {
@@ -63,6 +69,12 @@ export function ResultsPage(props: ResultsPageProps) {
     "Think and Grow Rich",
     "The Richest Man in Babylon",
   ]
+
+  useEffect(() => {
+    let bool = width <= 941;
+    setIsMobile(bool);
+    setShowFilter(!bool);
+  }, [width]);
 
   useEffect(() => {
     if(facet === "") {
@@ -112,18 +124,23 @@ export function ResultsPage(props: ResultsPageProps) {
     navigate({pathname: '.', search: createSearchParams({query: query, ...(filters.length > 0) && {filterBy: filters.join('|')}, ...(facet !== "") && {facet: facet}, ...(facetValue !== "") && {facetValue: facetValue}}).toString()})
   }
 
+  function toggleFilter() {
+    setShowFilter(showFilter => !showFilter);
+  }
+
   return (
     <div className="page">
       <header className="header">
         <h2 onClick={() => returnToHome()} style={{cursor: "pointer"}}>{props.appName}</h2>
         <SearchBar query={query} length="medium" sendQuery={sendQuery} autoFocus={false} />
       </header>
+      {isMobile && <button className="filter-button" onClick={() => {toggleFilter()}}>Filter</button>}
       <div className="page-body">
-        <div className="filter-bar" style={{"visibility": filterBarVisibility}}>
+        {!isMobile ? (<div className="filter-bar" style={{"visibility": filterBarVisibility}}>
           {categories.map((category, index) => {
             return (<FilterBar key={index} header={category.header} items={category.items} sendFilters={sendFilters}/>);
             })}
-        </div>
+        </div>) : <></>}
         <div className="content">
           <>
             {queryResults.length > 0 ? (queryResults.map((res: any, index: number) => {
@@ -135,11 +152,13 @@ export function ResultsPage(props: ResultsPageProps) {
             })) : <p>No results were found</p>}
           </>
         </div>
-        <div className="related-searches-box">
-          {Object.keys(facets).map((key: string, index) => {
-            return <RelatedSearch key={index} title={key} facets={facets[key]} selectedFacet={facetValue} sendQuery={sendFacetQuery}/>
-          })}
-        </div>
+        { showFilter &&
+          <div className="related-searches-box">
+            {Object.keys(facets).length > 0 && (Object.keys(facets).map((key: string, index) => {
+              return <RelatedSearch key={index} title={key} facets={facets[key]} selectedFacet={facetValue} sendQuery={sendFacetQuery}/>
+            }))}
+          </div>
+        }
       </div>
       <Pagination page={page} numOfPages={numberOfPages} setPage={setPage}/>
     </div>
