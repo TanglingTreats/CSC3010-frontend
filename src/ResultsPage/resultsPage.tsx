@@ -6,8 +6,7 @@ import { ResultItem } from "../ResultItem/resultItem";
 import "./resultsPage.css";
 import { FilterBar } from "../FilterBar/filterBar";
 import {RelatedSearch} from "../RelatedSearch/relatedSearch";
-import {RelatedSearchItem} from "../RelatedSearch/relatedSearchItem";
-import {makeQuery} from "../common/apiCall";
+import {makeFacetedQuery, makeQuery} from "../common/apiCall";
 import {Pagination} from "./pagination";
 
 interface ResultsPageProps {
@@ -26,6 +25,7 @@ export function ResultsPage(props: ResultsPageProps) {
   const query = searchParams.get("query") || "";
   const filterString = searchParams.get("filterBy") || "";
   const facet = searchParams.get("facet") || "";
+  const facetValue = searchParams.get("facetValue") || "";
 
   const [filters, setFilters] = useState<string[]>([]);
 
@@ -65,23 +65,24 @@ export function ResultsPage(props: ResultsPageProps) {
   ]
 
   useEffect(() => {
-    if(facet !== "") {
+    if(facet === "") {
       makeQuery(query).then((res) => {
         if(!res.error) {
-          setQueryResults(res.slice(0, -1));
-          setFacets(res[res.length - 1]);
-
-          let pages = Math.ceil((res.length - 1) / resultsPerPage);
-          setNumOfPages(pages);
-
+          processQueryResults(res);
         } else {
           console.log(res.error);
         }
       });
     } else {
-
+      makeFacetedQuery(query, facet, facetValue).then((res) => {
+        if(!res.error) {
+          processQueryResults(res);
+        } else {
+          console.log(res.error);
+        }
+      })
     }
-  }, [query]);
+  }, [query, facet]);
 
   useEffect(() => {
     sendQuery(query);
@@ -89,6 +90,14 @@ export function ResultsPage(props: ResultsPageProps) {
 
   function returnToHome() {
     navigate(`/`);
+  }
+
+  function processQueryResults(res: any) {
+    setQueryResults(res.slice(0, -1));
+    setFacets(res[res.length - 1]);
+
+    let pages = Math.ceil((res.length - 1) / resultsPerPage);
+    setNumOfPages(pages);
   }
 
   function sendFilters(filters: string[]) {
@@ -128,7 +137,6 @@ export function ResultsPage(props: ResultsPageProps) {
         </div>
         <div className="related-searches-box">
           {Object.keys(facets).map((key: string, index) => {
-            console.log(key);
             return <RelatedSearch key={index} title={key} facets={facets[key]} sendQuery={sendFacetQuery}/>
           })}
         </div>
