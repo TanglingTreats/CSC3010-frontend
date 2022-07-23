@@ -6,7 +6,8 @@ import axios from "axios";
 const useBase = process.env.USE_BASE === "true";
 
 // Choose to use local or server url
-const api_base_url = process.env.REACT_APP_ENDPOINT;
+const api_base_url = process.env.REACT_APP_ENDPOINT || "";
+console.log(api_base_url);
   //process.env.USE_CUSTOM === "true"
     //? process.env.LOCAL_DEV_API
     //: process.env.DEV_API_DOMAIN || "base_url";
