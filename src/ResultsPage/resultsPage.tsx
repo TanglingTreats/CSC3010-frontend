@@ -121,7 +121,7 @@ export function ResultsPage(props: ResultsPageProps) {
   }
 
   function sendFacetQuery(facet: string, facetValue: string) {
-    toggleFilter();
+    if (isMobile) toggleFilter();
     navigate({pathname: '.', search: createSearchParams({query: query, ...(filters.length > 0) && {filterBy: filters.join('|')}, ...(facet !== "") && {facet: facet}, ...(facetValue !== "") && {facetValue: facetValue}}).toString()})
   }
 
