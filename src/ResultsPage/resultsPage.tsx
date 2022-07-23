@@ -157,7 +157,7 @@ export function ResultsPage(props: ResultsPageProps) {
           <div className="related-searches-box">
             {Object.keys(facets).length > 0 ? (Object.keys(facets).map((key: string, index) => {
               return <RelatedSearch key={index} title={key} facets={facets[key]} selectedFacet={facetValue} sendQuery={sendFacetQuery}/>
-            })) : <p>Nothing to see here</p>}
+            })) : isMobile && <p>Nothing to see here</p>}
           </div>
         }
       </div>
