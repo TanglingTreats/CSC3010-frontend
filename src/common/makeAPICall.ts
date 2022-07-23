@@ -7,7 +7,6 @@ const useBase = process.env.USE_BASE === "true";
 
 // Choose to use local or server url
 const api_base_url = process.env.REACT_APP_ENDPOINT || "";
-console.log(api_base_url);
   //process.env.USE_CUSTOM === "true"
     //? process.env.LOCAL_DEV_API
     //: process.env.DEV_API_DOMAIN || "base_url";
@@ -31,6 +30,13 @@ const axiosInstance = axios.create({
  * @returns
  */
 export default async function makeAPICall(options: any) {
+  if(api_base_url === "") {
+    console.log("No endpoint defined");
+    return {status: {
+      message: "Endpoint not available"
+    }}
+  }
+
   const { method, endpoint, data, params, config } = options;
   let response;
 
