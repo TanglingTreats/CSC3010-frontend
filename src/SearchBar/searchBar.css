@@ -52,7 +52,7 @@ input[type="search"]:focus {
     padding: 7px;
 
     border-color: transparent;
-    border-radius: calc(var(--border-radius) - 2px);
+    border-radius: calc(var(--border-radius) - 1px);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 
